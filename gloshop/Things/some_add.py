@@ -75,26 +75,36 @@ async def answer_rename_q1(message: types.Message, state: FSMContext):
 @dp.message_handler(state=AskForRename.cost)
 async def answer_cost(message: types.Message, state: FSMContext):
     answer = message.text
-    if answer.isstates.Purchase.Autonumdigit():
-        async with state.proxy() as data:
-            data['cost']=answer
-        data = await state.get_data()
-        get_data[data.get('id')]['cost']=int(data.get('cost'))
-        await message.answer("Товар успешно редактирован", reply_markup=admin_panel)
+    if message.text == 'Отмена':
         await state.finish()
+        await message.answer('Панель Андминистратора.\nДля выхода /user', reply_markup=admin_panel)
     else:
-        await message.answer("Допустимы только числовые значения", reply_markup=cancel)
-        await AskForRename.cost.set()
+        if answer.isstates.Purchase.Autonumdigit():
+            async with state.proxy() as data:
+                data['cost']=answer
+            data = await state.get_data()
+            get_data[data.get('id')]['cost']=int(data.get('cost'))
+            dumpjson(get_data, "catalog.json")
+            await message.answer("Товар успешно редактирован", reply_markup=admin_panel)
+            await state.finish()
+        else:
+            await message.answer("Допустимы только числовые значения", reply_markup=cancel)
+            await AskForRename.cost.set()
 
 @dp.message_handler(state=AskForRename.name)
-async def answer_cost(message: types.Message, state: FSMContext):
+async def answer_name(message: types.Message, state: FSMContext):
     answer = message.text
-    async with state.proxy() as data:
-        data['name']=answer
-    data = await state.get_data()
-    get_data[data.get('id')]['name']=int(data.get('name'))
-    await message.answer("Товар успешно редактирован", reply_markup=admin_panel)
-    await state.finish()
+    if message.text == 'Отмена':
+        await state.finish()
+        await message.answer('Панель Андминистратора.\nДля выхода /user', reply_markup=admin_panel)
+    else:
+        async with state.proxy() as data:
+            data['name']=answer
+        data = await state.get_data()
+        get_data[data.get('id')]['name']=str(data.get('name'))
+        dumpjson(get_data, "catalog.json")
+        await message.answer("Товар успешно редактирован", reply_markup=admin_panel)
+        await state.finish()
 
 
 @dp.message_handler(state=AskForAdd.Q1)
