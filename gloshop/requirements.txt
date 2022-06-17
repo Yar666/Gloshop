@@ -1,2 +1,10 @@
-aiogram
-sqlite3
+Telethon
+beautifulsoup4
+colorama
+requests
+selenium
+urllib3
+pysqlite3
+bs4
+cfscrape
+datetime
