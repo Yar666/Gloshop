@@ -2,8 +2,8 @@ from aiogram.dispatcher.filters.state import StatesGroup, State
 from aiogram import types
 from aiogram.dispatcher import FSMContext
 from main import dp, bot
-from bot.telegram.gloshop.Things.json_helper import dumpjson, loadjson
-from bot.telegram.gloshop.keyboard.keyboard import *
+from .json_helper import dumpjson, loadjson
+from keyboard.keyboard import *
 
 get_data = loadjson("catalog.json")
 

@@ -1,6 +1,6 @@
-from aiogram.types import InlineKeyboardMarkup, InlineKeyboardButton
+﻿from aiogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 
-from bot.telegram.gloshop.keyboard.callback_data import *
+from .callback_data import *
 
 
 # choice = InlineKeyboardMarkup(

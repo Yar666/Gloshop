@@ -1,6 +1,6 @@
 from aiogram import types
 
-from bot.telegram.gloshop.Things.json_helper import loadjson
+from Things.json_helper import loadjson
 from main import dp, bot, db
 from aiogram.dispatcher.filters import Text, Command
 from keyboard.keyboard import admin_panel, cancel
@@ -8,7 +8,7 @@ from Things.some_add import AskForAdd, AskForRename
 from keyboard.inline_keyboard import show_order
 import filtres
 
-
+print(db.get_admins())
 
 async def notify_for_admin(id,bot):
     await bot.send_message(id,"Пришел заказ")

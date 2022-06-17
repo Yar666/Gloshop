@@ -1,6 +1,6 @@
-from aiogram import types
+﻿from aiogram import types
 from aiogram.dispatcher import FSMContext
-from bot.telegram.gloshop import states
+import states
 from main import bot, dp, db
 from datetime import datetime, timedelta
 from aiogram.types import Message, CallbackQuery, LabeledPrice, PreCheckoutQuery
@@ -9,9 +9,11 @@ from keyboard.keyboard import *
 from Things.json_helper import loadjson
 from config import *
 from keyboard.inline_keyboard import create_inline_keyboard, show_basket
-from bot.telegram.gloshop.keyboard.callback_data import buy_callback
+from keyboard.callback_data import buy_callback
 import admin_panel
 from admin_panel import notify_for_admin
+
+
 
 async def send_to_admin(f):
     await bot.send_message(chat_id=779032981, text="Бот запущен", reply_markup=menu_user)

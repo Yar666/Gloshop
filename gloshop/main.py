@@ -4,7 +4,7 @@ import asyncio
 from Sqlite3 import *
 
 loop = asyncio.get_event_loop()
-TOKEN = ''
+TOKEN = '2096015631:AAHHMQlLzbNQc342AwOLQdRfZWwLd38zdP0'
 bot = Bot(TOKEN,parse_mode="HTML")
 dp = Dispatcher(bot, loop=loop, storage=MemoryStorage())
 db = SQLighter('db.db')
